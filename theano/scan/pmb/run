@@ -1,0 +1,25 @@
+gcc -fwrapv -O2 -fno-strict-aliasing -DCUDAVERSION=12 -march=x86-64 -mmmx -mno-3dnow -msse -msse2 -msse3 -mssse3 -mno-sse4a -mcx16 -msahf -mmovbe -maes  -mpclmul -mpopcnt -mabm -mno-lwp -mfma -mno-fma4 -mno-xop -mbmi -mbmi2 -mno-tbm -mavx -mavx2 -msse4.2 -msse4.1 -mlzcnt -mrtm -mhle -mrdrnd -mf16c -mfsgsbase -mrdseed -mprfchw -madx -mfxsr -mxsave -mxsaveopt  -mpku  --param l1-cache-size=32 --param l1-cache-line-size=64 --param l2-cache-size=16896 -mtune=generic -DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION -m64 -fPIC -DNPY_ENSUREARRAY=NPY_ARRAY_ENSUREARRAY -DNPY_ENSURECOPY=NPY_ARRAY_ENSURECOPY -DNPY_ALIGNED=NPY_ARRAY_ALIGNED -DNPY_WRITEABLE=NPY_ARRAY_WRITEABLE -DNPY_UPDATE_ALL=NPY_ARRAY_UPDATE_ALL -DNPY_C_CONTIGUOUS=NPY_ARRAY_C_CONTIGUOUS -DNPY_F_CONTIGUOUS=NPY_ARRAY_F_CONTIGUOUS -I/home/paul.baggenstoss/miniconda3.11/include/python3.11/ -I/home/paul.baggenstoss/miniconda3.11/lib/python3.11/site-packages/numpy/core/include/ sp.c
+
+#and line option ‘-mno-sha’
+#gcc: error: unrecognized command line option ‘-mno-sgx’
+#gcc: error: unrecognized command line option ‘-mavx512f’
+#gcc: error: unrecognized command line option ‘-mno-avx512er’
+#gcc: error: unrecognized command line option ‘-mavx512cd’
+#gcc: error: unrecognized command line option ‘-mno-avx512pf’
+#gcc: error: unrecognized command line option ‘-mno-prefetchwt1’
+#gcc: error: unrecognized command line option ‘-mclflushopt’
+#gcc: error: unrecognized command line option ‘-mxsavec’
+#gcc: error: unrecognized command line option ‘-mxsaves’
+#gcc: error: unrecognized command line option ‘-mavx512dq’
+#gcc: error: unrecognized command line option ‘-mavx512bw’
+#gcc: error: unrecognized command line option ‘-mavx512vl’
+#gcc: error: unrecognized command line option ‘-mno-avx512ifma’
+#gcc: error: unrecognized command line option ‘-mno-avx512vbmi’
+#gcc: error: unrecognized command line option ‘-mno-avx5124fmaps’
+#gcc: error: unrecognized command line option ‘-mno-avx5124vnniw’
+#gcc: error: unrecognized command line option ‘-mclwb’
+#gcc: error: unrecognized command line option ‘-mno-mwaitx’
+#gcc: error: unrecognized command line option ‘-mno-clzero’
+#gcc: error: unrecognized command line option ‘-mno-rdpid’
+
+
