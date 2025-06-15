@@ -1,4 +1,0 @@
-git init
-Initialized empty Git repository in /home/paul.baggenstoss/software/Theano_PMB/.git/
-(base) paul.baggenstoss@nb18s029:~/software/Theano_PMB$ git remote add origin https://github.com/pbaggens1/theano_pmb.git
-
