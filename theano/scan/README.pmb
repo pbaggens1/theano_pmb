@@ -1,0 +1,12 @@
+To prevent compile errors when compiling scan_perform.c,
+it is necessary to create scan_perform.c using the command:
+$ cython scan_perform.pyx
+then move ot to c_code/
+Your C compiler needs to be the same as was used to compile python itself!
+
+Check using :
+
+import sys
+print(sys.version)
+
+
