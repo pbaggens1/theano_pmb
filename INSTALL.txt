@@ -1,0 +1,26 @@
+This is a version of Theano that I have modified
+from the last official version of Theano, so that it
+is compatible with newer versions of Numpy, CUDA, etc.
+
+I am not a software professional,  and have provided
+this in the hopes that others find it useful and/or
+can help maintain it.
+
+The main difference this has with maintained packages like PyTensor,
+is the GPU support. I find the gpuarray backend much better and
+hackable than Jax. i I have also created a library of native CUDA
+functions that interface to Theano, called "libsmegma".
+I call it "smegma" because it is a cheesy version of the MAGMA
+library.  I will add this to the repository in the future.
+
+I will also add installation notes as time goes by.
+
+Any and all changes that I have made are marked with the capital letters "PMB",
+so they can be easily searched. Changes are made to .py as well as .c functions.
+
+To get things to work with the GPU, there are also some fixes to the 
+pycuda, pygpu, skcuda (scikit-cuda) libraries that I will also document.
+
+Send any questions to:   p.m.baggenstoss@ieee.org
+
+Paul
