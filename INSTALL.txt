@@ -2,9 +2,10 @@ Theano is no longer officially maintained. Theano has been forked to Pytensor,
 which continues to be maintained. The Gpuarray backend for Theano was removed, 
 and GPU support for Pytensor was moved to Jax.  I personally don't like it 
 and I have invested much time and effort into GPU libraries for Theano. 
-Therefore, I continued to maintail Theano, although not in a professional 
-manner, but it works quite well and supports all the newer libraries like
-Numpy, Python, etc.  
+Therefore, I continued to maintain Theano.  I fixed only what needed to
+be fixed so that it works. Perhaps someone with more software experience can
+make these changes in a more professional manner.  It still works perfectly
+and supports all the newer libraries like Numpy, Python, etc.  
 
 Theano is a great framework, and I hope this will extend its life.
 
@@ -29,10 +30,9 @@ nv-cublas-cu12       12.1.3.1          (pypi)
 nv-cuda-nvrtc-cu12   12.1.105
 
 
-
-To get things to work with the GPU, there are also some fixes to the 
-pycuda, pygpu, skcuda (scikit-cuda). Thise files that I needed to change are also
-added to the main directory in this Git.
+To get things to work with the GPU, there are also some patches to the pycuda, 
+pygpu, skcuda (scikit-cuda). The files that I needed to change are also added 
+to the main directory in this Git.
 
 Any and all changes that I have made are marked with the capital letters "PMB",
 so they can be easily searched. Changes are made to .py as well as .c functions.
