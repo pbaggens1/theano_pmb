@@ -40,7 +40,8 @@ Any and all changes that I have made are marked with the capital letters "PMB",
 so they can be easily searched. Changes are made to .py as well as .c functions.
 
 To get things to work with the GPU, there are also some fixes to the 
-pycuda, pygpu, skcuda (scikit-cuda) libraries that I will also document.
+pycuda, pygpu, skcuda (scikit-cuda). Thise files that I needed to change are also
+added to the main directory in this Git.
 
 Send any questions to:   p.m.baggenstoss@ieee.org
 
