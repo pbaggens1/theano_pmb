@@ -1,8 +1,14 @@
-This is a version of Theano that I have modified
-from the last official version of Theano, so that it
-is compatible with newer versions of Numpy, CUDA, etc.
+Theano is no longer officially maintained. Theano has been forked to Pytensor, 
+which continues to be maintained. The Gpuarray backend for Theano was removed, 
+and GPU support for Pytensor was moved to Jax.  I personally don't like it 
+and I have invested much time and effort into GPU libraries for Theano. 
+Therefore, I continued to maintail Theano, although not in a professional 
+manner, but it works quite well and supports all the newer libraries like
+Numpy, Python, etc.  
 
-The following package versions have been tested:
+Theano is a great framework, and I hope this will extend its life.
+
+This version of Theano has been tested with the following package versions:
 
 Package              Version            Source
 ---------            ---------------    ------
@@ -23,25 +29,14 @@ nv-cublas-cu12       12.1.3.1          (pypi)
 nv-cuda-nvrtc-cu12   12.1.105
 
 
-I am not a software professional,  and have provided
-this in the hopes that others find it useful and/or
-can help maintain it.
-
-The main difference this has with maintained packages like PyTensor,
-is the GPU support. I find the gpuarray backend much better and
-hackable than Jax. i I have also created a library of native CUDA
-functions that interface to Theano, called "libsmegma".
-I call it "smegma" because it is a cheesy version of the MAGMA
-library.  I will add this to the repository in the future.
-
-I will also add installation notes as time goes by.
-
-Any and all changes that I have made are marked with the capital letters "PMB",
-so they can be easily searched. Changes are made to .py as well as .c functions.
 
 To get things to work with the GPU, there are also some fixes to the 
 pycuda, pygpu, skcuda (scikit-cuda). Thise files that I needed to change are also
 added to the main directory in this Git.
+
+Any and all changes that I have made are marked with the capital letters "PMB",
+so they can be easily searched. Changes are made to .py as well as .c functions.
+This also applies to the few files I have copied from skcuda, pycuda, pygpu.
 
 Send any questions to:   p.m.baggenstoss@ieee.org
 
