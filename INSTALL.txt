@@ -18,6 +18,7 @@ Python               3.9.16, 3.11.11
 Numpy                1.26.4
 cuda                 12.2
 pygpu                0.7.6
+pycuda               2022.1
 skcuda (scikit-cuda) 0.5.3
 libcusolver          11.6.1.9
 libcusparse          12.3.1.170
@@ -41,3 +42,86 @@ This also applies to the few files I have copied from skcuda, pycuda, pygpu.
 Send any questions to:   p.m.baggenstoss@ieee.org
 
 Paul
+
+Installing Theano_PMB with CUDA
+
+1. Install CUDA
+
+To verify, run nvidia-smi.   you should see something like this:
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce GTX 1050 Ti     Off | 00000000:01:00.0  On |                  N/A |
+| N/A   59C    P8               6W /  75W |    251MiB /  4096MiB |      5%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
+
+2. First de-install theano , if you already have it.
+3. on your computer, install (using conda or pip)
+    numpy
+    scipy
+    pytensor
+    matplotlib
+    pygpu
+    pycuda
+    scikit-cuda (skcuda)
+    cuda-compiler
+    cudnn
+    nv-cublas-cu12
+
+4. Download Theano_PMB:
+     https://github.com/pbaggens1/theano_pmb
+To install, just create a link from the installation directory to your 
+python path.  For example:
+ln -s /home/paul.baggenstoss/software/Theano_PMB/theano  ~/miniconda3/lib/python3.9/site-packages/
+
+You should then be able to import theano from python
+
+5.  Set up environment variables for PBN-Toolkit:
+
+export PBNTK_BACKEND=THEANO
+export THEANO_FLAGS=mode=FAST_RUN,device=cuda,floatX=float32,magma.library_path=/home/paul.baggenstoss/software/magma-2.5.2/lib,magma.include_path=/home/paul.baggenstoss/software/magma-2.5.2/include,gcc.cxxflags=-DCUDAVERSION=11,cxx=/usr/bin/g++,dnn.include_path=/usr/local/cuda/include,dnn.library_path=/usr/local/cuda/lib64
+
+
+On some computers, I get the error:
+"Mixed dnn version. The header is version 8907 while the library is version 8600."
+
+To fix this, I used:
+export LD_LIBRARY_PATH=/home/paul.baggenstoss/miniconda3/lib/:/usr/lib/x86_64-linux-gnu/
+Apparently I have cuda libraries installed twice.  This will select the one installed by conda.
+
+
+there may also be issues with your system's c-compiler gcc and g++.
+It may be necessary to install different versions using devtoolset.
+
+6. Install SMEGMA.
+
+a.  unpack the smegma archive. There should be sub-directories including "lib", "src" and "include"
+    also install the magma-2.5.2/ directory. That also has sub-directories including "lib", and "include"
+    Only the include files from that will be needed.  My package is called "SMEGMA" because it was originally 
+    modified from MAGMA, so is a "cheesy" version of MAGMA #:^).  Currently, it is completely separate from 
+    MAGMA, except for a few header files.
+
+b.  In the main directory, there is a script "compile_gpu_cuda12.sh" which should be executed
+    to do all the compilation and linking.  You may need to change some paths...
+    Note that this assumes you have the cuda compiler "nvcc" as well as the
+    libraries libcublas, libcusparse, libcudart, libcudadevrt, libcusolver.
+
+    If all goes well, you should produce the file 
+
+    lib/libsmegma.so
+
+c.  Copy the file libsmegma.so to magma-2.5.2/lib/
+    Copy include/smegma*.h to magma-2.5.2/include/
+
+d.  Make sure that the THEANO config variables are set to find
+    these include files and libraries:
+
+    magma.library_path=/home/paul.baggenstoss/software/magma-2.5.2/lib
+    magma.include_path=/home/paul.baggenstoss/software/magma-2.5.2/include
+
