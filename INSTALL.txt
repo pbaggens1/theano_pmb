@@ -61,8 +61,9 @@ To verify, run nvidia-smi.   you should see something like this:
 +-----------------------------------------+----------------------+----------------------+
                                                                                          
 
-2. First de-install theano , if you already have it.
-3. on your computer, install (using conda or pip)
+2. First de-install theano , if you already have it. Then,
+   on your computer, install (using conda or pip)
+
     numpy
     scipy
     pytensor
@@ -74,7 +75,7 @@ To verify, run nvidia-smi.   you should see something like this:
     cudnn
     nv-cublas-cu12
 
-4. Download Theano_PMB:
+3. Download Theano_PMB:
      https://github.com/pbaggens1/theano_pmb
 To install, just create a link from the installation directory to your 
 python path.  For example:
@@ -82,7 +83,7 @@ ln -s /home/paul.baggenstoss/software/Theano_PMB/theano  ~/miniconda3/lib/python
 
 You should then be able to import theano from python
 
-5.  Set up environment variables for PBN-Toolkit:
+4.  Set up environment variables for PBN-Toolkit:
 
 export PBNTK_BACKEND=THEANO
 export THEANO_FLAGS=mode=FAST_RUN,device=cuda,floatX=float32,magma.library_path=/home/paul.baggenstoss/software/magma-2.5.2/lib,magma.include_path=/home/paul.baggenstoss/software/magma-2.5.2/include,gcc.cxxflags=-DCUDAVERSION=11,cxx=/usr/bin/g++,dnn.include_path=/usr/local/cuda/include,dnn.library_path=/usr/local/cuda/lib64
@@ -99,13 +100,14 @@ Apparently I have cuda libraries installed twice.  This will select the one inst
 there may also be issues with your system's c-compiler gcc and g++.
 It may be necessary to install different versions using devtoolset.
 
-6. Install SMEGMA.
+5. Install SMEGMA.
 
 a.  unpack the smegma archive. There should be sub-directories including "lib", "src" and "include"
     also install the magma-2.5.2/ directory. That also has sub-directories including "lib", and "include"
     Only the include files from that will be needed.  My package is called "SMEGMA" because it was originally 
-    modified from MAGMA, so is a "cheesy" version of MAGMA #:^).  Currently, it is completely separate from 
-    MAGMA, except for a few header files.
+    modified from MAGMA, so is a "cheesy" version of MAGMA #:^).  Because MAGMA was imported as a
+    "skcuda" sub-module (import skcuda.magma), this is how smegma is imported, as "import skcuda.smegma".
+    Currently, it is completely separate from MAGMA, except for a few header files.
 
 b.  In the main directory, there is a script "compile_gpu_cuda12.sh" which should be executed
     to do all the compilation and linking.  You may need to change some paths...
@@ -124,4 +126,12 @@ d.  Make sure that the THEANO config variables are set to find
 
     magma.library_path=/home/paul.baggenstoss/software/magma-2.5.2/lib
     magma.include_path=/home/paul.baggenstoss/software/magma-2.5.2/include
+
+6. Update scikit-cuda (skcuda), pycuda, pygpu.  This is done simply be overwriting
+  the files with the ones in the sub-directories skcuda, pycuda, pygpu.
+  There are fixes that are needed to import smegma, as well as operate with latest Numpy.
+
+7. To test, try:
+
+   python cdb_gui.py
 
