@@ -77,6 +77,7 @@ gcc.cxxflags=-DCUDAVERSION=11  (or 12)
     matplotlib
     pygpu
     pycuda
+    scikit-learn (sklearn)
     scikit-cuda (skcuda)
     cuda-compiler
     cudnn
@@ -144,7 +145,24 @@ d.  Make sure that the THEANO config variables are set to find
   There are fixes that are needed to operate with latest Numpy.
   Note that an extra file smegma.py is in skcuda, which allows "import skcuda.smegma"
 
-7. To test, try:
+7.  scan_perform.c
 
-   python cdb_gui.py
+  The c-function scan_perform.c,  located in scan/c_code, is a c-file generated using
+  the command:
+
+   $ cython scan_perform.pyx -o c_code/scan_perform.c
+
+  Normally, you don't need to do this. But, if you get compile errors whenever
+  you use Theano "scan", then you might need to create scan_perform.c again.
+  Note that Python and the gcc and g++ compilers that Theano uses to compile code 
+  must be compatible with scan_perform.c and the Python installation.   To be more 
+  precise, if you run
+
+  import sys
+  print(sys.version)
+
+  this will display the c-compiler used to create your version of Python, and it must be the
+  same version from which your "cython" comes.
+
+
 
